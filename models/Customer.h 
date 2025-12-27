@@ -10,4 +10,8 @@ struct Customer {
     int totalOrders;
 };
 
+// Quản lý khách hàng
+void addCustomer(Customer*& customers, int& count);
+void removeCustomer(Customer*& customers, int& count);
+
 #endif

@@ -10,4 +10,8 @@ struct Staff {
     int totalOrders;
 };
 
+// Quản lý nhân viên
+void addStaff(Staff*& staffs, int& count);
+void removeStaff(Staff*& staffs, int& count);
+
 #endif
