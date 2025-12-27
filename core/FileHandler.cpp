@@ -2,35 +2,25 @@
 #include <fstream>
 
 // ================= PRODUCT =================
-vector<Product> loadProducts() {
-    vector<Product> products;
+Product* loadProducts(int& count) {
     ifstream file("data/products.txt");
+    count = 0;
+    Product* products = nullptr;
 
-    if (!file.is_open()) return products;
-
-    Product p;
-    while (file >> p.id >> p.name >> p.category >> p.price >> p.stock) {
-        products.push_back(p);
+    Product temp;
+    while (file >> temp.id >> temp.name >> temp.category >> temp.price >> temp.stock) {
+        Product* newArray = new Product[count + 1];
+        for (int i = 0; i < count; i++) {
+            newArray[i] = products[i];
+        }
+        newArray[count] = temp;
+        delete[] products;
+        products = newArray;
+        count++;
     }
 
-    file.close();
     return products;
 }
-
-void saveProducts(const vector<Product>& products) {
-    ofstream file("data/products.txt");
-
-    for (auto p : products) {
-        file << p.id << " "
-             << p.name << " "
-             << p.category << " "
-             << p.price << " "
-             << p.stock << endl;
-    }
-
-    file.close();
-}
-
 // ================= CUSTOMER =================
 vector<Customer> loadCustomers() {
     vector<Customer> customers;
