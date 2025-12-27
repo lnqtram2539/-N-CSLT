@@ -1,0 +1,21 @@
+name: C++ Build & Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Build
+      run: g++ src/*.cpp -Iinclude -o app
+
+    - name: Run test case
+      run: |
+        ./app < test/input1.txt > result.txt
+        diff result.txt test/output1.txt
