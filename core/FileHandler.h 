@@ -1,0 +1,23 @@
+#ifndef FILEHANDLER_H
+#define FILEHANDLER_H
+
+#include <vector>
+#include "../models/Product.h"
+#include "../models/Customer.h"
+#include "../models/Staff.h"
+
+using namespace std;
+
+// Product
+vector<Product> loadProducts();
+void saveProducts(const vector<Product>& products);
+
+// Customer
+vector<Customer> loadCustomers();
+void saveCustomers(const vector<Customer>& customers);
+
+// Staff
+vector<Staff> loadStaffs();
+void saveStaffs(const vector<Staff>& staffs);
+
+#endif
