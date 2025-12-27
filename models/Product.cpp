@@ -2,18 +2,42 @@
 #include <iostream>
 
 void addProduct(Product*& products, int& count) {
-    Product newProduct;
+    Product p;
 
     cout << "Nhap ma san pham: ";
-    cin >> newProduct.id;
+    cin >> p.id;
 
-    // Kiểm tra trùng ID
     for (int i = 0; i < count; i++) {
-        if (products[i].id == newProduct.id) {
+        if (products[i].id == p.id) {
             cout << "Ma san pham da ton tai!\n";
             return;
         }
     }
+
+    cout << "Nhap ten san pham: ";
+    cin >> p.name;
+
+    cout << "Nhap danh muc: ";
+    cin >> p.category;
+
+    cout << "Nhap gia: ";
+    cin >> p.price;
+
+    cout << "Nhap so luong ton kho: ";
+    cin >> p.stock;
+
+    Product* newArr = new Product[count + 1];
+    for (int i = 0; i < count; i++) {
+        newArr[i] = products[i];
+    }
+    newArr[count] = p;
+
+    delete[] products;
+    products = newArr;
+    count++;
+
+    cout << "Them san pham thanh cong!\n";
+}
 
 void removeProduct(Product*& products, int& count) {
     string id;
@@ -33,46 +57,16 @@ void removeProduct(Product*& products, int& count) {
         return;
     }
 
-    Product* newArray = new Product[count - 1];
-
+    Product* newArr = new Product[count - 1];
     for (int i = 0, j = 0; i < count; i++) {
         if (i != index) {
-            newArray[j++] = products[i];
+            newArr[j++] = products[i];
         }
     }
 
     delete[] products;
-    products = newArray;
+    products = newArr;
     count--;
 
     cout << "Xoa san pham thanh cong!\n";
-}
-
-
-    cout << "Nhap ten san pham: ";
-    cin >> newProduct.name;
-
-    cout << "Nhap danh muc: ";
-    cin >> newProduct.category;
-
-    cout << "Nhap gia: ";
-    cin >> newProduct.price;
-
-    cout << "Nhap so luong ton kho: ";
-    cin >> newProduct.stock;
-
-    // Tạo mảng mới lớn hơn
-    Product* newArray = new Product[count + 1];
-
-    for (int i = 0; i < count; i++) {
-        newArray[i] = products[i];
-    }
-
-    newArray[count] = newProduct;
-
-    delete[] products;
-    products = newArray;
-    count++;
-
-    cout << "Them san pham thanh cong!\n";
 }

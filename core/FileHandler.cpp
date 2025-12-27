@@ -3,76 +3,98 @@
 
 // ================= PRODUCT =================
 Product* loadProducts(int& count) {
-    ifstream file("data/products.txt");
     count = 0;
     Product* products = nullptr;
+    ifstream file("data/products.txt");
 
     Product temp;
     while (file >> temp.id >> temp.name >> temp.category >> temp.price >> temp.stock) {
-        Product* newArray = new Product[count + 1];
+        Product* newArr = new Product[count + 1];
         for (int i = 0; i < count; i++) {
-            newArray[i] = products[i];
+            newArr[i] = products[i];
         }
-        newArray[count] = temp;
+        newArr[count] = temp;
         delete[] products;
-        products = newArray;
+        products = newArr;
         count++;
     }
 
+    file.close();
     return products;
 }
+
+void saveProducts(Product* products, int count) {
+    ofstream file("data/products.txt");
+    for (int i = 0; i < count; i++) {
+        file << products[i].id << " "
+             << products[i].name << " "
+             << products[i].category << " "
+             << products[i].price << " "
+             << products[i].stock << endl;
+    }
+    file.close();
+}
+
 // ================= CUSTOMER =================
-vector<Customer> loadCustomers() {
-    vector<Customer> customers;
+Customer* loadCustomers(int& count) {
+    count = 0;
+    Customer* customers = nullptr;
     ifstream file("data/customers.txt");
 
-    if (!file.is_open()) return customers;
-
-    Customer c;
-    while (file >> c.id >> c.name >> c.totalOrders) {
-        customers.push_back(c);
+    Customer temp;
+    while (file >> temp.id >> temp.name >> temp.totalOrders) {
+        Customer* newArr = new Customer[count + 1];
+        for (int i = 0; i < count; i++) {
+            newArr[i] = customers[i];
+        }
+        newArr[count] = temp;
+        delete[] customers;
+        customers = newArr;
+        count++;
     }
 
     file.close();
     return customers;
 }
 
-void saveCustomers(const vector<Customer>& customers) {
+void saveCustomers(Customer* customers, int count) {
     ofstream file("data/customers.txt");
-
-    for (auto c : customers) {
-        file << c.id << " "
-             << c.name << " "
-             << c.totalOrders << endl;
+    for (int i = 0; i < count; i++) {
+        file << customers[i].id << " "
+             << customers[i].name << " "
+             << customers[i].totalOrders << endl;
     }
-
     file.close();
 }
 
 // ================= STAFF =================
-vector<Staff> loadStaffs() {
-    vector<Staff> staffs;
+Staff* loadStaffs(int& count) {
+    count = 0;
+    Staff* staffs = nullptr;
     ifstream file("data/staffs.txt");
 
-    if (!file.is_open()) return staffs;
-
-    Staff s;
-    while (file >> s.id >> s.name >> s.totalOrders) {
-        staffs.push_back(s);
+    Staff temp;
+    while (file >> temp.id >> temp.name >> temp.totalOrders) {
+        Staff* newArr = new Staff[count + 1];
+        for (int i = 0; i < count; i++) {
+            newArr[i] = staffs[i];
+        }
+        newArr[count] = temp;
+        delete[] staffs;
+        staffs = newArr;
+        count++;
     }
 
     file.close();
     return staffs;
 }
 
-void saveStaffs(const vector<Staff>& staffs) {
+void saveStaffs(Staff* staffs, int count) {
     ofstream file("data/staffs.txt");
-
-    for (auto s : staffs) {
-        file << s.id << " "
-             << s.name << " "
-             << s.totalOrders << endl;
+    for (int i = 0; i < count; i++) {
+        file << staffs[i].id << " "
+             << staffs[i].name << " "
+             << staffs[i].totalOrders << endl;
     }
-
     file.close();
 }

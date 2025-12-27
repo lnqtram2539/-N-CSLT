@@ -2,7 +2,6 @@
 #define PRODUCT_H
 
 #include <string>
-#include <vector>
 using namespace std;
 
 struct Product {
@@ -13,8 +12,8 @@ struct Product {
     int stock;
 };
 
-// Các hàm quản lý sản phẩm
-void addProduct(vector<Product>& products);
-void removeProduct(vector<Product>& products);
+// Quản lý sản phẩm (dùng con trỏ)
+void addProduct(Product*& products, int& count);
+void removeProduct(Product*& products, int& count);
 
 #endif

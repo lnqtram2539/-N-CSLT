@@ -1,23 +1,20 @@
 #ifndef FILEHANDLER_H
 #define FILEHANDLER_H
 
-#include <vector>
 #include "../models/Product.h"
 #include "../models/Customer.h"
 #include "../models/Staff.h"
 
-using namespace std;
-
 // Product
-vector<Product> loadProducts();
-void saveProducts(const vector<Product>& products);
+Product* loadProducts(int& count);
+void saveProducts(Product* products, int count);
 
 // Customer
-vector<Customer> loadCustomers();
-void saveCustomers(const vector<Customer>& customers);
+Customer* loadCustomers(int& count);
+void saveCustomers(Customer* customers, int count);
 
 // Staff
-vector<Staff> loadStaffs();
-void saveStaffs(const vector<Staff>& staffs);
+Staff* loadStaffs(int& count);
+void saveStaffs(Staff* staffs, int count);
 
 #endif
