@@ -5,16 +5,21 @@
 #include "../models/Customer.h"
 #include "../models/Staff.h"
 
+using namespace std;
+
 // Product
 Product* loadProducts(int& count);
+void loadProducts(Product*& products, int& count);
 void saveProducts(Product* products, int count);
 
 // Customer
 Customer* loadCustomers(int& count);
+void loadCustomers(Customer*& customers, int& count);
 void saveCustomers(Customer* customers, int count);
 
 // Staff
 Staff* loadStaffs(int& count);
+void loadStaffs(Staff*& staffs, int& count);
 void saveStaffs(Staff* staffs, int count);
 
 #endif
