@@ -3,13 +3,8 @@
 #include <sstream>
 
 // ================= PRODUCT =================
-Product* loadProducts(int& count) {
-    count = 0;
-    Product* products = nullptr;
-    ifstream file("data/products.txt");
-
 void loadProducts(Product*& products, int& count) {
-    ifstream file("data/products.txt");
+    ifstream file("C:/-N-CSLT/data/products.txt");
     count = 0;
     string line;
 
@@ -32,7 +27,7 @@ void loadProducts(Product*& products, int& count) {
     file.close();
 
 void saveProducts(Product* products, int count) {
-    ofstream file("data/products.txt");
+    ofstream file("C:/-N-CSLT/data/products.txt");
     for (int i = 0; i < count; i++) {
         file << products[i].id << "|"
              << products[i].name << "|"
@@ -43,13 +38,8 @@ void saveProducts(Product* products, int count) {
 }
 
 // ================= CUSTOMER =================
-Customer* loadCustomers(int& count) {
-    count = 0;
-    Customer* customers = nullptr;
-    ifstream file("data/customers.txt");
-
     void loadCustomers(Customer*& customers, int& count) {
-    ifstream file("data/customers.txt");
+    ifstream file("C:/-N-CSLT/data/customers.txt");
     count = 0;
     string line;
 
@@ -71,7 +61,7 @@ Customer* loadCustomers(int& count) {
 }
 
 void saveCustomers(Customer* customers, int count) {
-    ofstream file("data/customers.txt");
+    ofstream file("C:/-N-CSLT/data/customers.txt");
     for (int i = 0; i < count; i++) {
         file << customers[i].id << " "
              << customers[i].name << " "
@@ -81,13 +71,8 @@ void saveCustomers(Customer* customers, int count) {
 }
 
 // ================= STAFF =================
-Staff* loadStaffs(int& count) {
-    count = 0;
-    Staff* staffs = nullptr;
-    ifstream file("data/staffs.txt");
-
     void loadStaffs(Staff*& staffs, int& count) {
-    ifstream file("data/staffs.txt");
+    ifstream file("C:/-N-CSLT/data/staffs.txt");
     count = 0;
     string line;
 
@@ -108,7 +93,7 @@ Staff* loadStaffs(int& count) {
     file.close();
 
 void saveStaffs(Staff* staffs, int count) {
-    ofstream file("data/staffs.txt");
+    ofstream file("C:/-N-CSLT/data/staffs.txt");
     for (int i = 0; i < count; i++) {
         file << staffs[i].id << " "
              << staffs[i].name << " "
