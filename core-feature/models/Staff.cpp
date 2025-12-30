@@ -1,10 +1,7 @@
 #include "Staff.h"
 #include <iostream>
-#include <string>
-
 using namespace std;
 
-// ================= ADD STAFF =================
 void addStaff(Staff*& staffs, int& count) {
     Staff s;
 
@@ -18,7 +15,8 @@ void addStaff(Staff*& staffs, int& count) {
         }
     }
 
-    cin.ignore();
+    cin.ignore(); // ⚠️ RẤT QUAN TRỌNG
+
     cout << "Nhap ten nhan vien: ";
     getline(cin, s.name);
 
@@ -28,6 +26,7 @@ void addStaff(Staff*& staffs, int& count) {
     for (int i = 0; i < count; i++) {
         newArr[i] = staffs[i];
     }
+
     newArr[count] = s;
 
     delete[] staffs;
@@ -35,42 +34,4 @@ void addStaff(Staff*& staffs, int& count) {
     count++;
 
     cout << "Them nhan vien thanh cong!\n";
-}
-
-// ================= REMOVE STAFF =================
-void removeStaff(Staff*& staffs, int& count) {
-    if (count == 0) {
-        cout << "Danh sach nhan vien rong!\n";
-        return;
-    }
-
-    string id;
-    cout << "Nhap ma nhan vien can xoa: ";
-    cin >> id;
-
-    int index = -1;
-    for (int i = 0; i < count; i++) {
-        if (staffs[i].id == id) {
-            index = i;
-            break;
-        }
-    }
-
-    if (index == -1) {
-        cout << "Khong tim thay nhan vien!\n";
-        return;
-    }
-
-    Staff* newArr = new Staff[count - 1];
-    for (int i = 0, j = 0; i < count; i++) {
-        if (i != index) {
-            newArr[j++] = staffs[i];
-        }
-    }
-
-    delete[] staffs;
-    staffs = newArr;
-    count--;
-
-    cout << "Xoa nhan vien thanh cong!\n";
 }

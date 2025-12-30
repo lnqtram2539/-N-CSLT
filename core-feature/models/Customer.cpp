@@ -1,10 +1,7 @@
 #include "Customer.h"
 #include <iostream>
-#include <string>
-
 using namespace std;
 
-// ================= ADD CUSTOMER =================
 void addCustomer(Customer*& customers, int& count) {
     Customer c;
 
@@ -18,7 +15,8 @@ void addCustomer(Customer*& customers, int& count) {
         }
     }
 
-    cin.ignore(); // xoa ky tu '\n' con lai
+    cin.ignore(); // ⚠️ BẮT BUỘC
+
     cout << "Nhap ten khach hang: ";
     getline(cin, c.name);
 
@@ -28,6 +26,7 @@ void addCustomer(Customer*& customers, int& count) {
     for (int i = 0; i < count; i++) {
         newArr[i] = customers[i];
     }
+
     newArr[count] = c;
 
     delete[] customers;
@@ -35,42 +34,4 @@ void addCustomer(Customer*& customers, int& count) {
     count++;
 
     cout << "Them khach hang thanh cong!\n";
-}
-
-// ================= REMOVE CUSTOMER =================
-void removeCustomer(Customer*& customers, int& count) {
-    if (count == 0) {
-        cout << "Danh sach khach hang rong!\n";
-        return;
-    }
-
-    string id;
-    cout << "Nhap ma khach hang can xoa: ";
-    cin >> id;
-
-    int index = -1;
-    for (int i = 0; i < count; i++) {
-        if (customers[i].id == id) {
-            index = i;
-            break;
-        }
-    }
-
-    if (index == -1) {
-        cout << "Khong tim thay khach hang!\n";
-        return;
-    }
-
-    Customer* newArr = new Customer[count - 1];
-    for (int i = 0, j = 0; i < count; i++) {
-        if (i != index) {
-            newArr[j++] = customers[i];
-        }
-    }
-
-    delete[] customers;
-    customers = newArr;
-    count--;
-
-    cout << "Xoa khach hang thanh cong!\n";
 }
