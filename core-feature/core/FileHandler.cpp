@@ -8,15 +8,22 @@ using namespace std;
 // ================= PRODUCT =================
 void loadProducts(Product*& products, int& count) {
     ifstream file("C:/-N-CSLT/data/products.txt");
+
     if (!file.is_open()) {
-        cout << "Khong mo duoc products.txt\n";
+        cout << "❌ KHONG MO DUOC FILE products.txt\n";
+        products = nullptr;
         count = 0;
         return;
     }
 
+    cout << "✅ DA MO DUOC FILE products.txt\n";
+
     count = 0;
     string line;
-    while (getline(file, line)) count++;
+
+    while (getline(file, line)) {
+        if (line != "") count++;
+    }
 
     file.clear();
     file.seekg(0);
@@ -25,15 +32,23 @@ void loadProducts(Product*& products, int& count) {
     int i = 0;
 
     while (getline(file, line)) {
+        if (line == "") continue;
+
         stringstream ss(line);
         getline(ss, products[i].id, '|');
         getline(ss, products[i].name, '|');
         getline(ss, products[i].category, '|');
         ss >> products[i].price;
+
+        products[i].stock = 0;
         i++;
     }
+
     file.close();
+
+    cout << "👉 SO SAN PHAM LOAD DUOC: " << count << endl;
 }
+
 
 void saveProducts(Product* products, int count) {
     ofstream file("C:/-N-CSLT/data/products.txt");
