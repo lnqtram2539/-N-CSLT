@@ -5,16 +5,16 @@
 #include "../models/Customer.h"
 #include "../models/Staff.h"
 
-// Product
-Product* loadProducts(int& count);
+// ================= PRODUCT =================
+void loadProducts(Product*& products, int& count);
 void saveProducts(Product* products, int count);
 
-// Customer
-Customer* loadCustomers(int& count);
+// ================= CUSTOMER =================
+void loadCustomers(Customer*& customers, int& count);
 void saveCustomers(Customer* customers, int count);
 
-// Staff
-Staff* loadStaffs(int& count);
+// ================= STAFF =================
+void loadStaffs(Staff*& staffs, int& count);
 void saveStaffs(Staff* staffs, int count);
 
 #endif

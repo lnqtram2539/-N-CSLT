@@ -1,100 +1,140 @@
 #include "FileHandler.h"
 #include <fstream>
+#include <sstream>
+#include <iostream>
+
+using namespace std;
 
 // ================= PRODUCT =================
-Product* loadProducts(int& count) {
-    count = 0;
-    Product* products = nullptr;
-    ifstream file("data/products.txt");
+void loadProducts(Product*& products, int& count) {
+    ifstream file("C:/-N-CSLT/data/products.txt");
 
-    Product temp;
-    while (file >> temp.id >> temp.name >> temp.category >> temp.price >> temp.stock) {
-        Product* newArr = new Product[count + 1];
-        for (int i = 0; i < count; i++) {
-            newArr[i] = products[i];
-        }
-        newArr[count] = temp;
-        delete[] products;
-        products = newArr;
-        count++;
+    if (!file.is_open()) {
+        cout << "❌ KHONG MO DUOC FILE products.txt\n";
+        products = nullptr;
+        count = 0;
+        return;
+    }
+
+    cout << "✅ DA MO DUOC FILE products.txt\n";
+
+    count = 0;
+    string line;
+
+    while (getline(file, line)) {
+        if (line != "") count++;
+    }
+
+    file.clear();
+    file.seekg(0);
+
+    products = new Product[count];
+    int i = 0;
+
+    while (getline(file, line)) {
+        if (line == "") continue;
+
+        stringstream ss(line);
+        getline(ss, products[i].id, '|');
+        getline(ss, products[i].name, '|');
+        getline(ss, products[i].category, '|');
+        ss >> products[i].price;
+
+        products[i].stock = 0;
+        i++;
     }
 
     file.close();
-    return products;
+
+    cout << "👉 SO SAN PHAM LOAD DUOC: " << count << endl;
 }
 
+
 void saveProducts(Product* products, int count) {
-    ofstream file("data/products.txt");
+    ofstream file("C:/-N-CSLT/data/products.txt");
     for (int i = 0; i < count; i++) {
-        file << products[i].id << " "
-             << products[i].name << " "
-             << products[i].category << " "
-             << products[i].price << " "
-             << products[i].stock << endl;
+        file << products[i].id << "|"
+             << products[i].name << "|"
+             << products[i].category << "|"
+             << products[i].price << "\n";
     }
     file.close();
 }
 
 // ================= CUSTOMER =================
-Customer* loadCustomers(int& count) {
-    count = 0;
-    Customer* customers = nullptr;
-    ifstream file("data/customers.txt");
-
-    Customer temp;
-    while (file >> temp.id >> temp.name >> temp.totalOrders) {
-        Customer* newArr = new Customer[count + 1];
-        for (int i = 0; i < count; i++) {
-            newArr[i] = customers[i];
-        }
-        newArr[count] = temp;
-        delete[] customers;
-        customers = newArr;
-        count++;
+void loadCustomers(Customer*& customers, int& count) {
+    ifstream file("C:/-N-CSLT/data/customers.txt");
+    if (!file.is_open()) {
+        cout << "Khong mo duoc customers.txt\n";
+        count = 0;
+        return;
     }
 
+    count = 0;
+    string line;
+    while (getline(file, line)) count++;
+
+    file.clear();
+    file.seekg(0);
+
+    customers = new Customer[count];
+    int i = 0;
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        getline(ss, customers[i].id, '|');
+        getline(ss, customers[i].name, '|');
+        ss >> customers[i].totalOrders;
+        i++;
+    }
     file.close();
-    return customers;
 }
 
 void saveCustomers(Customer* customers, int count) {
-    ofstream file("data/customers.txt");
+    ofstream file("C:/-N-CSLT/data/customers.txt");
     for (int i = 0; i < count; i++) {
-        file << customers[i].id << " "
-             << customers[i].name << " "
-             << customers[i].totalOrders << endl;
+        file << customers[i].id << "|"
+             << customers[i].name << "|"
+             << customers[i].totalOrders << "\n";
     }
     file.close();
 }
 
 // ================= STAFF =================
-Staff* loadStaffs(int& count) {
-    count = 0;
-    Staff* staffs = nullptr;
-    ifstream file("data/staffs.txt");
-
-    Staff temp;
-    while (file >> temp.id >> temp.name >> temp.totalOrders) {
-        Staff* newArr = new Staff[count + 1];
-        for (int i = 0; i < count; i++) {
-            newArr[i] = staffs[i];
-        }
-        newArr[count] = temp;
-        delete[] staffs;
-        staffs = newArr;
-        count++;
+void loadStaffs(Staff*& staffs, int& count) {
+    ifstream file("C:/-N-CSLT/data/staffs.txt");
+    if (!file.is_open()) {
+        cout << "Khong mo duoc staffs.txt\n";
+        count = 0;
+        return;
     }
 
+    count = 0;
+    string line;
+    while (getline(file, line)) count++;
+
+    file.clear();
+    file.seekg(0);
+
+    staffs = new Staff[count];
+    int i = 0;
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        getline(ss, staffs[i].id, '|');
+        getline(ss, staffs[i].name, '|');
+        ss >> staffs[i].totalOrders;
+        i++;
+    }
     file.close();
-    return staffs;
 }
 
 void saveStaffs(Staff* staffs, int count) {
-    ofstream file("data/staffs.txt");
+    ofstream file("C:/-N-CSLT/data/staffs.txt");
     for (int i = 0; i < count; i++) {
-        file << staffs[i].id << " "
-             << staffs[i].name << " "
-             << staffs[i].totalOrders << endl;
+        file << staffs[i].id << "|"
+             << staffs[i].name << "|"
+             << staffs[i].totalOrders << "\n";
     }
     file.close();
 }

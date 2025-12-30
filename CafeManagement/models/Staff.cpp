@@ -1,6 +1,8 @@
 #include "Staff.h"
 #include <iostream>
 
+using namespace std;
+
 void addStaff(Staff*& staffs, int& count) {
     Staff s;
 
@@ -14,8 +16,10 @@ void addStaff(Staff*& staffs, int& count) {
         }
     }
 
+    cin.ignore(); // 🔴 BẮT BUỘC
+
     cout << "Nhap ten nhan vien: ";
-    cin >> s.name;
+    getline(cin, s.name);   // "Tran Thi B"
 
     s.totalOrders = 0;
 
@@ -23,6 +27,7 @@ void addStaff(Staff*& staffs, int& count) {
     for (int i = 0; i < count; i++) {
         newArr[i] = staffs[i];
     }
+
     newArr[count] = s;
 
     delete[] staffs;
@@ -32,7 +37,13 @@ void addStaff(Staff*& staffs, int& count) {
     cout << "Them nhan vien thanh cong!\n";
 }
 
+
 void removeStaff(Staff*& staffs, int& count) {
+    if (count == 0) {
+        cout << "Danh sach nhan vien rong!\n";
+        return;
+    }
+
     string id;
     cout << "Nhap ma nhan vien can xoa: ";
     cin >> id;
