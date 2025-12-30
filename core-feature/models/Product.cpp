@@ -1,5 +1,6 @@
 #include "Product.h"
 #include <iostream>
+
 using namespace std;
 
 void addProduct(Product*& products, int& count) {
@@ -15,8 +16,7 @@ void addProduct(Product*& products, int& count) {
         }
     }
 
-    cin.ignore(); // ⚠️ CỰC KỲ QUAN TRỌNG
-
+    cin.ignore();
     cout << "Nhap ten san pham: ";
     getline(cin, p.name);
 
@@ -41,4 +41,41 @@ void addProduct(Product*& products, int& count) {
     count++;
 
     cout << "Them san pham thanh cong!\n";
+}
+
+void removeProduct(Product*& products, int& count) {
+    if (count == 0) {
+        cout << "Danh sach san pham rong!\n";
+        return;
+    }
+
+    string id;
+    cout << "Nhap ma san pham can xoa: ";
+    cin >> id;
+
+    int index = -1;
+    for (int i = 0; i < count; i++) {
+        if (products[i].id == id) {
+            index = i;
+            break;
+        }
+    }
+
+    if (index == -1) {
+        cout << "Khong tim thay san pham!\n";
+        return;
+    }
+
+    Product* newArr = new Product[count - 1];
+    for (int i = 0, j = 0; i < count; i++) {
+        if (i != index) {
+            newArr[j++] = products[i];
+        }
+    }
+
+    delete[] products;
+    products = newArr;
+    count--;
+
+    cout << "Xoa san pham thanh cong!\n";
 }
