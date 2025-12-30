@@ -1,4 +1,4 @@
-#include "models/Product.h"
+#include "Product.h"
 #include <iostream>
 using namespace std;
 

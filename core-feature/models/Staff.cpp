@@ -1,4 +1,4 @@
-#include "models/Staff.h"
+#include "Staff.h"
 #include <iostream>
 using namespace std;
 
