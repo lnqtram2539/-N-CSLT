@@ -142,6 +142,9 @@ int main() {
         cout << "1. Quan ly san pham\n";
         cout << "2. Quan ly khach hang\n";
         cout << "3. Quan ly nhan vien\n";
+        cout << "4. Tao hoa don\n";
+        cout << "5. Doanh thu theo ngay\n";
+        cout << "6. Doanh thu theo thang\n";
         cout << "0. Thoat\n";
         cout << "Lua chon: ";
         cin >> choice;

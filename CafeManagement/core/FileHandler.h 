@@ -17,4 +17,8 @@ void saveCustomers(Customer* customers, int count);
 void loadStaffs(Staff*& staffs, int& count);
 void saveStaffs(Staff* staffs, int count);
 
+// ================= BILL =================
+void loadBills(Bill*& bills, int& count);
+void saveBills(Bill* bills, int count);
+
 #endif

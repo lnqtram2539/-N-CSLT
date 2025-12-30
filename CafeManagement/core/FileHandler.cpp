@@ -138,3 +138,29 @@ void saveStaffs(Staff* staffs, int count) {
     }
     file.close();
 }
+
+void loadBills(Bill*& bills, int& count) {
+    ifstream file("data/bills.txt");
+    count = 0;
+    string line;
+
+    while (getline(file, line)) count++;
+    file.clear();
+    file.seekg(0);
+
+    bills = new Bill[count];
+    int i = 0;
+
+    while (getline(file, line)) {
+        stringstream ss(line);
+        getline(ss, bills[i].billId, '|');
+        getline(ss, bills[i].date, '|');
+        getline(ss, bills[i].productId, '|');
+        ss >> bills[i].quantity;
+        ss.ignore();
+        ss >> bills[i].totalPrice;
+        ss.ignore();
+        getline(ss, bills[i].staffId);
+        i++;
+    }
+}
