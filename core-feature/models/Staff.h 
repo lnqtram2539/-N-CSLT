@@ -14,4 +14,4 @@ struct Staff {
 void addStaff(Staff*& staffs, int& count);
 void removeStaff(Staff*& staffs, int& count);
 
-#endif
+#endif // STAFF_H

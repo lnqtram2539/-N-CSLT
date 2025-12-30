@@ -12,8 +12,8 @@ struct Product {
     int stock;
 };
 
-// Quản lý sản phẩm (dùng con trỏ)
+// Quản lý sản phẩm
 void addProduct(Product*& products, int& count);
 void removeProduct(Product*& products, int& count);
 
-#endif
+#endif // PRODUCT_H

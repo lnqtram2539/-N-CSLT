@@ -1,6 +1,10 @@
 #include "Product.h"
 #include <iostream>
+#include <string>
 
+using namespace std;
+
+// ================= ADD PRODUCT =================
 void addProduct(Product*& products, int& count) {
     Product p;
 
@@ -14,11 +18,12 @@ void addProduct(Product*& products, int& count) {
         }
     }
 
+    cin.ignore();
     cout << "Nhap ten san pham: ";
-    cin >> p.name;
+    getline(cin, p.name);
 
     cout << "Nhap danh muc: ";
-    cin >> p.category;
+    getline(cin, p.category);
 
     cout << "Nhap gia: ";
     cin >> p.price;
@@ -39,7 +44,13 @@ void addProduct(Product*& products, int& count) {
     cout << "Them san pham thanh cong!\n";
 }
 
+// ================= REMOVE PRODUCT =================
 void removeProduct(Product*& products, int& count) {
+    if (count == 0) {
+        cout << "Danh sach san pham rong!\n";
+        return;
+    }
+
     string id;
     cout << "Nhap ma san pham can xoa: ";
     cin >> id;

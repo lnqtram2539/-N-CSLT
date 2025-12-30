@@ -128,9 +128,13 @@ int main() {
     int customerCount = 0;
     int staffCount = 0;
 
-    Product* products = loadProducts(productCount);
-    Customer* customers = loadCustomers(customerCount);
-    Staff* staffs = loadStaffs(staffCount);
+    Product* products = nullptr;
+    Customer* customers = nullptr;
+    Staff* staffs = nullptr;
+
+    loadProducts(products, productCount);
+    loadCustomers(customers, customerCount);
+    loadStaffs(staffs, staffCount);
 
     int choice;
     do {
@@ -146,25 +150,20 @@ int main() {
         case 1:
             productMenu(products, productCount);
             break;
-
         case 2:
             customerMenu(customers, customerCount);
             break;
-
         case 3:
             staffMenu(staffs, staffCount);
             break;
-
         case 0:
             cout << "Dang thoat chuong trinh...\n";
             break;
-
         default:
             cout << "Lua chon khong hop le!\n";
         }
     } while (choice != 0);
 
-    // Giải phóng bộ nhớ
     delete[] products;
     delete[] customers;
     delete[] staffs;

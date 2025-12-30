@@ -1,6 +1,10 @@
 #include "Customer.h"
 #include <iostream>
+#include <string>
 
+using namespace std;
+
+// ================= ADD CUSTOMER =================
 void addCustomer(Customer*& customers, int& count) {
     Customer c;
 
@@ -14,8 +18,9 @@ void addCustomer(Customer*& customers, int& count) {
         }
     }
 
+    cin.ignore(); // xoa ky tu '\n' con lai
     cout << "Nhap ten khach hang: ";
-    cin >> c.name;
+    getline(cin, c.name);
 
     c.totalOrders = 0;
 
@@ -32,7 +37,13 @@ void addCustomer(Customer*& customers, int& count) {
     cout << "Them khach hang thanh cong!\n";
 }
 
+// ================= REMOVE CUSTOMER =================
 void removeCustomer(Customer*& customers, int& count) {
+    if (count == 0) {
+        cout << "Danh sach khach hang rong!\n";
+        return;
+    }
+
     string id;
     cout << "Nhap ma khach hang can xoa: ";
     cin >> id;
