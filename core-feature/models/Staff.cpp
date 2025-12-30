@@ -16,9 +16,10 @@ void addStaff(Staff*& staffs, int& count) {
         }
     }
 
-    cin.ignore();
+    cin.ignore(); // 🔴 BẮT BUỘC
+
     cout << "Nhap ten nhan vien: ";
-    getline(cin, s.name);
+    getline(cin, s.name);   // "Tran Thi B"
 
     s.totalOrders = 0;
 
@@ -35,6 +36,7 @@ void addStaff(Staff*& staffs, int& count) {
 
     cout << "Them nhan vien thanh cong!\n";
 }
+
 
 void removeStaff(Staff*& staffs, int& count) {
     if (count == 0) {

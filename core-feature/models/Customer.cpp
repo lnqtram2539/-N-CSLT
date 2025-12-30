@@ -16,9 +16,10 @@ void addCustomer(Customer*& customers, int& count) {
         }
     }
 
-    cin.ignore();
+    cin.ignore(); // 🔴 BẮT BUỘC
+
     cout << "Nhap ten khach hang: ";
-    getline(cin, c.name);
+    getline(cin, c.name);   // "Nguyen Van A"
 
     c.totalOrders = 0;
 
@@ -35,6 +36,7 @@ void addCustomer(Customer*& customers, int& count) {
 
     cout << "Them khach hang thanh cong!\n";
 }
+
 
 void removeCustomer(Customer*& customers, int& count) {
     if (count == 0) {

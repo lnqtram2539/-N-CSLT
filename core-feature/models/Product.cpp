@@ -16,12 +16,13 @@ void addProduct(Product*& products, int& count) {
         }
     }
 
-    cin.ignore();
+    cin.ignore(); // 🔴 RẤT QUAN TRỌNG
+
     cout << "Nhap ten san pham: ";
-    getline(cin, p.name);
+    getline(cin, p.name);   // có thể nhập "Ca phe den"
 
     cout << "Nhap danh muc: ";
-    getline(cin, p.category);
+    getline(cin, p.category); // ví dụ: "Do uong nong"
 
     cout << "Nhap gia: ";
     cin >> p.price;
@@ -42,6 +43,7 @@ void addProduct(Product*& products, int& count) {
 
     cout << "Them san pham thanh cong!\n";
 }
+
 
 void removeProduct(Product*& products, int& count) {
     if (count == 0) {
