@@ -17,8 +17,8 @@ void addProduct(Product*& products, int& count) {
             return;
         }
     }
-
     cin.ignore();
+
     cout << "Nhap ten san pham: ";
     getline(cin, p.name);
 
