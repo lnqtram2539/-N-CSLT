@@ -11,6 +11,7 @@ struct Bill {
     int quantity;
     double totalPrice;
     string staffId;
+    double totalAmount;
 };
 
 #endif

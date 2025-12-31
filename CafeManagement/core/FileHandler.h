@@ -4,20 +4,21 @@
 #include "../models/Product.h"
 #include "../models/Customer.h"
 #include "../models/Staff.h"
+#include "../models/Bill.h"
 
-// ================= PRODUCT =================
+// PRODUCT
 void loadProducts(Product*& products, int& count);
 void saveProducts(Product* products, int count);
 
-// ================= CUSTOMER =================
+// CUSTOMER
 void loadCustomers(Customer*& customers, int& count);
 void saveCustomers(Customer* customers, int count);
 
-// ================= STAFF =================
+// STAFF
 void loadStaffs(Staff*& staffs, int& count);
 void saveStaffs(Staff* staffs, int count);
 
-// ================= BILL =================
+// BILL
 void loadBills(Bill*& bills, int& count);
 void saveBills(Bill* bills, int count);
 
