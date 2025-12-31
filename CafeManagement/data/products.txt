@@ -1,3 +1,4 @@
+
 P001|Espresso|Cà phê|25000|50
 P002|Latte|Cà phê|30000|40
 P003|Cappuccino|Cà phê|35000|35
@@ -13,4 +14,3 @@ P012|Nước Cam|Nước ép|22000|60
 P013|Nước Táo Thơm|Nước ép|25000|50
 P014|Sinh Tố Dâu|Sinh tố|35000|40
 P015|Sinh Tố Bơ|Sinh tố|40000|40
-
