@@ -1,4 +1,3 @@
-
 P001|Espresso|Cà phê|25000|50
 P002|Latte|Cà phê|30000|40
 P003|Cappuccino|Cà phê|35000|35

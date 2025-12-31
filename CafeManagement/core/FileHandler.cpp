@@ -5,8 +5,6 @@
 
 using namespace std;
 
-<<<<<<< HEAD
-// ================= PRODUCT =================
 void loadProducts(Product*& products, int& count) {
     ifstream file("C:/-N-CSLT/data/products.txt");
 
@@ -26,9 +24,6 @@ void loadProducts(Product*& products, int& count) {
         if (line != "") count++;
     }
 
-=======
-/* ================= PRODUCT ================= */
-
 void loadProducts(Product*& products, int& count) {
     ifstream file("data/products.txt");
     count = 0;
@@ -40,14 +35,12 @@ void loadProducts(Product*& products, int& count) {
     }
 
     while (std::getline(file, line)) count++;
->>>>>>> 45793faf0839d715f82e4b0f6e5cc65dc2aa4e76
     file.clear();
     file.seekg(0);
 
     products = new Product[count];
     int i = 0;
 
-<<<<<<< HEAD
     while (getline(file, line)) {
         if (line == "") continue;
 
@@ -58,7 +51,6 @@ void loadProducts(Product*& products, int& count) {
         ss >> products[i].price;
 
         products[i].stock = 0;
-=======
     while (std::getline(file, line)) {
         stringstream ss(line);
         std::getline(ss, products[i].id, '|');
@@ -67,12 +59,10 @@ void loadProducts(Product*& products, int& count) {
         ss >> products[i].price;
         ss.ignore();
         ss >> products[i].stock;
->>>>>>> 45793faf0839d715f82e4b0f6e5cc65dc2aa4e76
         i++;
     }
 
     file.close();
-<<<<<<< HEAD
 
     cout << "👉 SO SAN PHAM LOAD DUOC: " << count << endl;
 }
@@ -80,28 +70,21 @@ void loadProducts(Product*& products, int& count) {
 
 void saveProducts(Product* products, int count) {
     ofstream file("C:/-N-CSLT/data/products.txt");
-=======
 }
 
 void saveProducts(Product* products, int count) {
     ofstream file("data/products.txt");
->>>>>>> 45793faf0839d715f82e4b0f6e5cc65dc2aa4e76
     for (int i = 0; i < count; i++) {
         file << products[i].id << "|"
              << products[i].name << "|"
              << products[i].category << "|"
-<<<<<<< HEAD
-             << products[i].price << "\n";
-=======
              << products[i].price << "|"
              << products[i].stock << "\n";
->>>>>>> 45793faf0839d715f82e4b0f6e5cc65dc2aa4e76
+             << products[i].price << "\n";
     }
     file.close();
 }
 
-<<<<<<< HEAD
-// ================= CUSTOMER =================
 void loadCustomers(Customer*& customers, int& count) {
     ifstream file("C:/-N-CSLT/data/customers.txt");
     if (!file.is_open()) {
@@ -114,8 +97,6 @@ void loadCustomers(Customer*& customers, int& count) {
     string line;
     while (getline(file, line)) count++;
 
-=======
-/* ================= CUSTOMER ================= */
 
 void loadCustomers(Customer*& customers, int& count) {
     ifstream file("data/customers.txt");
@@ -128,14 +109,12 @@ void loadCustomers(Customer*& customers, int& count) {
     }
 
     while (std::getline(file, line)) count++;
->>>>>>> 45793faf0839d715f82e4b0f6e5cc65dc2aa4e76
     file.clear();
     file.seekg(0);
 
     customers = new Customer[count];
     int i = 0;
 
-<<<<<<< HEAD
     while (getline(file, line)) {
         stringstream ss(line);
         getline(ss, customers[i].id, '|');
@@ -143,7 +122,6 @@ void loadCustomers(Customer*& customers, int& count) {
         ss >> customers[i].totalOrders;
         i++;
     }
-=======
     while (std::getline(file, line)) {
         stringstream ss(line);
         std::getline(ss, customers[i].id, '|');
@@ -152,16 +130,12 @@ void loadCustomers(Customer*& customers, int& count) {
         i++;
     }
 
->>>>>>> 45793faf0839d715f82e4b0f6e5cc65dc2aa4e76
     file.close();
 }
 
 void saveCustomers(Customer* customers, int count) {
-<<<<<<< HEAD
-    ofstream file("C:/-N-CSLT/data/customers.txt");
-=======
     ofstream file("data/customers.txt");
->>>>>>> 45793faf0839d715f82e4b0f6e5cc65dc2aa4e76
+    ofstream file("C:/-N-CSLT/data/customers.txt");
     for (int i = 0; i < count; i++) {
         file << customers[i].id << "|"
              << customers[i].name << "|"
@@ -170,8 +144,6 @@ void saveCustomers(Customer* customers, int count) {
     file.close();
 }
 
-<<<<<<< HEAD
-// ================= STAFF =================
 void loadStaffs(Staff*& staffs, int& count) {
     ifstream file("C:/-N-CSLT/data/staffs.txt");
     if (!file.is_open()) {
@@ -184,8 +156,6 @@ void loadStaffs(Staff*& staffs, int& count) {
     string line;
     while (getline(file, line)) count++;
 
-=======
-/* ================= STAFF ================= */
 
 void loadStaffs(Staff*& staffs, int& count) {
     ifstream file("data/staffs.txt");
@@ -198,14 +168,12 @@ void loadStaffs(Staff*& staffs, int& count) {
     }
 
     while (std::getline(file, line)) count++;
->>>>>>> 45793faf0839d715f82e4b0f6e5cc65dc2aa4e76
     file.clear();
     file.seekg(0);
 
     staffs = new Staff[count];
     int i = 0;
 
-<<<<<<< HEAD
     while (getline(file, line)) {
         stringstream ss(line);
         getline(ss, staffs[i].id, '|');
@@ -213,7 +181,6 @@ void loadStaffs(Staff*& staffs, int& count) {
         ss >> staffs[i].totalOrders;
         i++;
     }
-=======
     while (std::getline(file, line)) {
         stringstream ss(line);
         std::getline(ss, staffs[i].id, '|');
@@ -222,16 +189,12 @@ void loadStaffs(Staff*& staffs, int& count) {
         i++;
     }
 
->>>>>>> 45793faf0839d715f82e4b0f6e5cc65dc2aa4e76
     file.close();
 }
 
 void saveStaffs(Staff* staffs, int count) {
-<<<<<<< HEAD
-    ofstream file("C:/-N-CSLT/data/staffs.txt");
-=======
     ofstream file("data/staffs.txt");
->>>>>>> 45793faf0839d715f82e4b0f6e5cc65dc2aa4e76
+    ofstream file("C:/-N-CSLT/data/staffs.txt");
     for (int i = 0; i < count; i++) {
         file << staffs[i].id << "|"
              << staffs[i].name << "|"
@@ -239,10 +202,7 @@ void saveStaffs(Staff* staffs, int count) {
     }
     file.close();
 }
-<<<<<<< HEAD
-=======
 
-/* ================= BILL ================= */
 
 void loadBills(Bill*& bills, int& count) {
     ifstream file("data/bills.txt");
@@ -289,4 +249,3 @@ void saveBills(Bill* bills, int count) {
     }
     file.close();
 }
->>>>>>> 45793faf0839d715f82e4b0f6e5cc65dc2aa4e76

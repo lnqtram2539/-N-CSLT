@@ -3,11 +3,10 @@
 #include "models/Product.h"
 #include "models/Customer.h"
 #include "models/Staff.h"
-#include "models/Bill.h"
 
 using namespace std;
 
-/* ================= MENU SAN PHAM ================= */
+// ================= PRODUCT MENU =================
 void productMenu(Product*& products, int& productCount) {
     int choice;
     do {
@@ -22,7 +21,7 @@ void productMenu(Product*& products, int& productCount) {
         switch (choice) {
         case 1:
             if (productCount == 0) {
-                cout << "Danh sach san pham rong!\n";
+                cout << "Danh sach rong!\n";
             } else {
                 for (int i = 0; i < productCount; i++) {
                     cout << products[i].id << " | "
@@ -33,10 +32,12 @@ void productMenu(Product*& products, int& productCount) {
                 }
             }
             break;
+
         case 2:
             addProduct(products, productCount);
             saveProducts(products, productCount);
             break;
+
         case 3:
             removeProduct(products, productCount);
             saveProducts(products, productCount);
@@ -45,7 +46,7 @@ void productMenu(Product*& products, int& productCount) {
     } while (choice != 0);
 }
 
-/* ================= MENU KHACH HANG ================= */
+// ================= CUSTOMER MENU =================
 void customerMenu(Customer*& customers, int& customerCount) {
     int choice;
     do {
@@ -60,7 +61,7 @@ void customerMenu(Customer*& customers, int& customerCount) {
         switch (choice) {
         case 1:
             if (customerCount == 0) {
-                cout << "Danh sach khach hang rong!\n";
+                cout << "Danh sach rong!\n";
             } else {
                 for (int i = 0; i < customerCount; i++) {
                     cout << customers[i].id << " | "
@@ -69,10 +70,12 @@ void customerMenu(Customer*& customers, int& customerCount) {
                 }
             }
             break;
+
         case 2:
             addCustomer(customers, customerCount);
             saveCustomers(customers, customerCount);
             break;
+
         case 3:
             removeCustomer(customers, customerCount);
             saveCustomers(customers, customerCount);
@@ -81,7 +84,7 @@ void customerMenu(Customer*& customers, int& customerCount) {
     } while (choice != 0);
 }
 
-/* ================= MENU NHAN VIEN ================= */
+// ================= STAFF MENU =================
 void staffMenu(Staff*& staffs, int& staffCount) {
     int choice;
     do {
@@ -96,7 +99,7 @@ void staffMenu(Staff*& staffs, int& staffCount) {
         switch (choice) {
         case 1:
             if (staffCount == 0) {
-                cout << "Danh sach nhan vien rong!\n";
+                cout << "Danh sach rong!\n";
             } else {
                 for (int i = 0; i < staffCount; i++) {
                     cout << staffs[i].id << " | "
@@ -105,10 +108,12 @@ void staffMenu(Staff*& staffs, int& staffCount) {
                 }
             }
             break;
+
         case 2:
             addStaff(staffs, staffCount);
             saveStaffs(staffs, staffCount);
             break;
+
         case 3:
             removeStaff(staffs, staffCount);
             saveStaffs(staffs, staffCount);
@@ -117,36 +122,19 @@ void staffMenu(Staff*& staffs, int& staffCount) {
     } while (choice != 0);
 }
 
-/* ================= MENU BAO CAO (NHOM 3) ================= */
-void reportMenu(Bill* bills, int billCount) {
-    double totalRevenue = 0;
-
-    for (int i = 0; i < billCount; i++) {
-        totalRevenue += bills[i].totalPrice;
-    }
-
-    cout << "\n===== BAO CAO DOANH THU =====\n";
-    cout << "Tong so hoa don: " << billCount << endl;
-    cout << "Tong doanh thu: " << totalRevenue << " VND\n";
-}
-
-/* ================= MAIN ================= */
+// ================= MAIN =================
 int main() {
-    Product* products = nullptr;
-    Customer* customers = nullptr;
-    Staff* staffs = nullptr;
-    Bill* bills = nullptr;
-
     int productCount = 0;
     int customerCount = 0;
     int staffCount = 0;
-    int billCount = 0;
 
-    // Load du lieu tu file
+    Product* products = nullptr;
+    Customer* customers = nullptr;
+    Staff* staffs = nullptr;
+
     loadProducts(products, productCount);
     loadCustomers(customers, customerCount);
     loadStaffs(staffs, staffCount);
-    loadBills(bills, billCount);
 
     int choice;
     do {
@@ -154,7 +142,9 @@ int main() {
         cout << "1. Quan ly san pham\n";
         cout << "2. Quan ly khach hang\n";
         cout << "3. Quan ly nhan vien\n";
-        cout << "4. Bao cao thong ke\n";
+        cout << "4. Tao hoa don\n";
+        cout << "5. Doanh thu theo ngay\n";
+        cout << "6. Doanh thu theo thang\n";
         cout << "0. Thoat\n";
         cout << "Lua chon: ";
         cin >> choice;
@@ -169,22 +159,17 @@ int main() {
         case 3:
             staffMenu(staffs, staffCount);
             break;
-        case 4:
-            reportMenu(bills, billCount);
-            break;
         case 0:
-            cout << "Thoat chuong trinh!\n";
+            cout << "Dang thoat chuong trinh...\n";
             break;
         default:
             cout << "Lua chon khong hop le!\n";
         }
     } while (choice != 0);
 
-    // Giai phong bo nho
     delete[] products;
     delete[] customers;
     delete[] staffs;
-    delete[] bills;
 
     return 0;
 }
