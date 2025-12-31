@@ -74,3 +74,4 @@ void removeCustomer(Customer*& customers, int& count) {
 
     cout << "Xoa khach hang thanh cong!\n";
 }
+

@@ -5,7 +5,24 @@
 
 using namespace std;
 
-/* ================= PRODUCT ================= */
+void loadProducts(Product*& products, int& count) {
+    ifstream file("C:/-N-CSLT/data/products.txt");
+
+    if (!file.is_open()) {
+        cout << "❌ KHONG MO DUOC FILE products.txt\n";
+        products = nullptr;
+        count = 0;
+        return;
+    }
+
+    cout << "✅ DA MO DUOC FILE products.txt\n";
+
+    count = 0;
+    string line;
+
+    while (getline(file, line)) {
+        if (line != "") count++;
+    }
 
 void loadProducts(Product*& products, int& count) {
     ifstream file("data/products.txt");
@@ -24,6 +41,16 @@ void loadProducts(Product*& products, int& count) {
     products = new Product[count];
     int i = 0;
 
+    while (getline(file, line)) {
+        if (line == "") continue;
+
+        stringstream ss(line);
+        getline(ss, products[i].id, '|');
+        getline(ss, products[i].name, '|');
+        getline(ss, products[i].category, '|');
+        ss >> products[i].price;
+
+        products[i].stock = 0;
     while (std::getline(file, line)) {
         stringstream ss(line);
         std::getline(ss, products[i].id, '|');
@@ -36,6 +63,13 @@ void loadProducts(Product*& products, int& count) {
     }
 
     file.close();
+
+    cout << "👉 SO SAN PHAM LOAD DUOC: " << count << endl;
+}
+
+
+void saveProducts(Product* products, int count) {
+    ofstream file("C:/-N-CSLT/data/products.txt");
 }
 
 void saveProducts(Product* products, int count) {
@@ -46,11 +80,23 @@ void saveProducts(Product* products, int count) {
              << products[i].category << "|"
              << products[i].price << "|"
              << products[i].stock << "\n";
+             << products[i].price << "\n";
     }
     file.close();
 }
 
-/* ================= CUSTOMER ================= */
+void loadCustomers(Customer*& customers, int& count) {
+    ifstream file("C:/-N-CSLT/data/customers.txt");
+    if (!file.is_open()) {
+        cout << "Khong mo duoc customers.txt\n";
+        count = 0;
+        return;
+    }
+
+    count = 0;
+    string line;
+    while (getline(file, line)) count++;
+
 
 void loadCustomers(Customer*& customers, int& count) {
     ifstream file("data/customers.txt");
@@ -69,6 +115,13 @@ void loadCustomers(Customer*& customers, int& count) {
     customers = new Customer[count];
     int i = 0;
 
+    while (getline(file, line)) {
+        stringstream ss(line);
+        getline(ss, customers[i].id, '|');
+        getline(ss, customers[i].name, '|');
+        ss >> customers[i].totalOrders;
+        i++;
+    }
     while (std::getline(file, line)) {
         stringstream ss(line);
         std::getline(ss, customers[i].id, '|');
@@ -82,6 +135,7 @@ void loadCustomers(Customer*& customers, int& count) {
 
 void saveCustomers(Customer* customers, int count) {
     ofstream file("data/customers.txt");
+    ofstream file("C:/-N-CSLT/data/customers.txt");
     for (int i = 0; i < count; i++) {
         file << customers[i].id << "|"
              << customers[i].name << "|"
@@ -90,7 +144,18 @@ void saveCustomers(Customer* customers, int count) {
     file.close();
 }
 
-/* ================= STAFF ================= */
+void loadStaffs(Staff*& staffs, int& count) {
+    ifstream file("C:/-N-CSLT/data/staffs.txt");
+    if (!file.is_open()) {
+        cout << "Khong mo duoc staffs.txt\n";
+        count = 0;
+        return;
+    }
+
+    count = 0;
+    string line;
+    while (getline(file, line)) count++;
+
 
 void loadStaffs(Staff*& staffs, int& count) {
     ifstream file("data/staffs.txt");
@@ -109,6 +174,13 @@ void loadStaffs(Staff*& staffs, int& count) {
     staffs = new Staff[count];
     int i = 0;
 
+    while (getline(file, line)) {
+        stringstream ss(line);
+        getline(ss, staffs[i].id, '|');
+        getline(ss, staffs[i].name, '|');
+        ss >> staffs[i].totalOrders;
+        i++;
+    }
     while (std::getline(file, line)) {
         stringstream ss(line);
         std::getline(ss, staffs[i].id, '|');
@@ -122,6 +194,7 @@ void loadStaffs(Staff*& staffs, int& count) {
 
 void saveStaffs(Staff* staffs, int count) {
     ofstream file("data/staffs.txt");
+    ofstream file("C:/-N-CSLT/data/staffs.txt");
     for (int i = 0; i < count; i++) {
         file << staffs[i].id << "|"
              << staffs[i].name << "|"
@@ -130,7 +203,6 @@ void saveStaffs(Staff* staffs, int count) {
     file.close();
 }
 
-/* ================= BILL ================= */
 
 void loadBills(Bill*& bills, int& count) {
     ifstream file("data/bills.txt");
