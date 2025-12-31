@@ -1,0 +1,2 @@
+P01|Ca Phe Den|Coffee|20000
+P02|Tra Dao|Tea|25000
